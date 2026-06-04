@@ -100,10 +100,11 @@ NimiBeats.fm is a music player web app that connects to your self-hosted Jellyfi
 - **Hardware media key support** — keyboard media keys, Bluetooth headphones, iOS/Android lock screen controls via [Media Session API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Session_API)
 
 ### Library
-- Browse by **Albums**, **Artists**, **All Tracks**, or **Folders**
+- Browse by **Albums**, **Artists**, **All Tracks**, **Folders**, or **Radio**
 - **Unlimited library size** — auto-paginated (500 items/request), loads everything
 - **All Tracks view** — sortable (A–Z, artist, album, recent) with inline filter bar
 - **Folder view** — mirrors your actual file structure on disk, with recursive Play/Shuffle for entire folder trees
+- **Radio** — infinite random station that auto-refills as you listen with no repeats per session
 - Recently added albums on home screen
 
 ### Search
@@ -123,17 +124,17 @@ NimiBeats.fm is a music player web app that connects to your self-hosted Jellyfi
 ### Themes
 Nine built-in colour themes:
 
-| Theme | Accent | Inspired by |
-|-------|--------|------------|
-| **Nimi** | Sage mint | Nimi Nightmare — default |
-| **Mint** | Ghost mint | Mint Fantôme |
-| **Fauna** | Nature green | Ceres Fauna |
-| **Doki** | Golden yellow | Dokibird |
-| **Sakuna** | Sakura pink | Sakuna |
-| **Kronii** | Time blue | Ouro Kronii |
-| **Gigi** | Warm amber | Gigi |
-| **Shiori** | Gothic purple | Shiori Novella |
-| **Mono** | Black & white | — |
+| Theme | Accent |
+|-------|--------|
+| **Nimi** | Sage mint |
+| **Mint** | Ghost mint |
+| **Fauna** | Nature green |
+| **Doki** | Golden yellow |
+| **Sakuna** | Sakura pink |
+| **Kronii** | Time blue |
+| **Gigi** | Warm amber |
+| **Shiori** | Gothic purple |
+| **Mono** | Black & white |
 
 ### Personalisation
 - Custom app name, login tagline, and logo URL (all live-previewed)
