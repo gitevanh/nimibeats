@@ -1301,7 +1301,7 @@ function renderCards(items, id, type) {
 // ── Open album/artist ──────────────────
 async function openAlbum(id) {
   S.prevView = S.view;
-  showView('tracklist');
+  showView('tracklist', true);
   document.getElementById('tl-tracks').innerHTML = '<div class="loader"><div class="spin"></div></div>';
   try {
     const [meta, tracks] = await Promise.all([
@@ -1320,7 +1320,7 @@ async function openAlbum(id) {
 
 async function openArtist(id, name) {
   S.prevView = S.view;
-  showView('tracklist');
+  showView('tracklist', true);
   document.getElementById('tl-tracks').innerHTML = '<div class="loader"><div class="spin"></div></div>';
   try {
     const d = await api(`/Users/${S.userId}/Items?IncludeItemTypes=MusicAlbum&Recursive=true&ArtistIds=${id}&SortBy=ProductionYear&SortOrder=Ascending&Fields=PrimaryImageAspectRatio`);
@@ -1595,7 +1595,7 @@ function onSearch(v) {
 
 async function doSearch(q) {
   S.prevView = S.view==='search'?S.prevView:S.view;
-  showView('search');
+  showView('search', true);
   document.getElementById('sr-out').innerHTML='<div class="loader"><div class="spin"></div></div>';
   try {
     const [apiResult, localArtists] = await Promise.all([
@@ -1626,7 +1626,7 @@ function playSearch(i) { S.queue=[...S.searchTracks]; S.qi=i; playNow(); renderQ
 function openNowPlaying() {
   if (!S.queue.length) return;
   S.prevView = S.view;
-  showView('nowplaying');
+  showView('nowplaying', true);
   renderNowPlaying();
 }
 
@@ -2000,7 +2000,7 @@ function renderPlaylists() {
 
 async function openPlaylist(id, name) {
   S.prevView = S.view;
-  showView('tracklist');
+  showView('tracklist', true);
   document.getElementById('tl-tracks').innerHTML = '<div class="loader"><div class="spin"></div></div>';
   try {
     const tracks = await api(`/Users/${S.userId}/Items?ParentId=${id}&SortBy=IndexNumber&SortOrder=Ascending&Fields=RunTimeTicks,ArtistItems`);
@@ -2258,8 +2258,9 @@ function closeMerge() { document.getElementById('merge-modal').classList.remove(
 function applyMerges() { buildMergeMap(); save(); renderArtists(); closeMerge(); toast('Artist merges applied ✓'); }
 
 // ── Navigation ─────────────────────────
-function showView(name) {
-  if (S.view!==name) S.prevView=S.view;
+function showView(name, keepPrev=false) {
+  // keepPrev=true means the caller already set S.prevView correctly — don't overwrite it
+  if (!keepPrev && S.view!==name) S.prevView=S.view;
   S.view=name;
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-'+name).classList.add('active');
