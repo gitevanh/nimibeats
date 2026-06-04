@@ -28,7 +28,7 @@
       --text2:    #7a8c7a;
       --text3:    #4a5a4a;
       --danger:   #f08080;
-      --ph:       80px;
+      --ph:       110px;
       --sb:       220px;
       --rad:      8px;
     }
@@ -305,23 +305,23 @@
       backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
       border-top: 1px solid var(--border);
       display: flex; flex-direction: column; justify-content: center;
-      padding: 6px 20px 8px; gap: 4px;
+      padding: 8px 24px 10px; gap: 6px;
     }
     /* Row 1: track info | controls | extras */
     #player-row1 { display: flex; align-items: center; gap: 8px; width: 100%; }
     /* Row 2: full-width progress bar */
     #player-row2 { display: flex; align-items: center; gap: 8px; width: 100%; }
     #pl-left { display: flex; align-items: center; gap: 10px; min-width: 0; cursor: pointer; flex: 1; overflow: hidden; }
-    #pl-art { width: 42px; height: 42px; border-radius: 6px; object-fit: cover; background: var(--surface); flex-shrink: 0; }
+    #pl-art { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; background: var(--surface); flex-shrink: 0; }
     #pl-info { min-width: 0; flex: 1; }
-    #pl-title { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #pl-artist { font-size: 11px; color: var(--text2); margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #pl-title { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #pl-artist { font-size: 12px; color: var(--text2); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     #pl-controls { display: flex; align-items: center; gap: 0; flex-shrink: 0; }
     .cb { background: none; border: none; color: var(--text3); cursor: pointer; padding: 7px; border-radius: 6px; transition: all .12s; display: flex; align-items: center; justify-content: center; }
     .cb:hover { color: var(--text); background: var(--bg3); }
     .cb.on { color: var(--accent); }
     #pl-play {
-      width: 38px; height: 38px; background: var(--accent); color: #000;
+      width: 50px; height: 50px; background: var(--accent); color: #000;
       border: none; border-radius: 50%; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: opacity .15s, transform .15s; flex-shrink: 0; margin: 0 4px;
@@ -330,19 +330,21 @@
     #pl-play:active { transform: scale(.96); }
     #pl-right { display: flex; align-items: center; gap: 2px; flex-shrink: 0; margin-left: 4px; }
     #vol-wrap { display: flex; align-items: center; gap: 6px; }
-    #vol-bar { width: 72px; height: 3px; background: var(--surface); border-radius: 2px; cursor: pointer; position: relative; padding: 10px 0; margin: -10px 0; background-clip: content-box; }
-    #vol-fill { height: 3px; background: var(--text3); border-radius: 2px; width: 80%; transition: background .15s; pointer-events: none; }
+    #vol-bar { width: 80px; height: 8px; background: #383838; border-radius: 4px; cursor: pointer; position: relative; overflow: visible; }
+    #vol-fill { position: absolute; top: 0; left: 0; height: 100%; width: 80%; background: var(--text2); border-radius: 4px; transition: background .15s; pointer-events: none; }
     #vol-bar:hover #vol-fill { background: var(--accent); }
+    #vol-bar::before { content: ''; position: absolute; inset: -8px 0; }
     #q-toggle { background: none; border: none; color: var(--text3); cursor: pointer; padding: 7px; border-radius: 6px; transition: all .12s; display: flex; }
     #q-toggle:hover { color: var(--text); background: var(--bg3); }
     #q-toggle.on { color: var(--accent); }
     /* Progress bar row */
     #tc, #tt { font-size: 11px; color: var(--text3); flex-shrink: 0; width: 30px; font-variant-numeric: tabular-nums; }
     #tt { text-align: right; }
-    #prog { flex: 1; height: 3px; background: var(--surface); border-radius: 2px; cursor: pointer; position: relative; padding: 10px 0; margin: -10px 0; background-clip: content-box; }
-    #prog-fill { height: 3px; background: var(--accent); border-radius: 2px; width: 0%; transition: width .4s linear; position: relative; }
-    #prog-fill::after { content: ''; position: absolute; right: -6px; top: -4.5px; width: 12px; height: 12px; border-radius: 50%; background: var(--text); opacity: 0; transition: opacity .12s; }
-    #prog:hover #prog-fill::after { opacity: 1; }
+    #prog { flex: 1; height: 8px; background: #383838; border-radius: 4px; cursor: pointer; position: relative; overflow: visible; }
+    #prog-fill { position: absolute; top: 0; left: 0; height: 100%; width: 0%; background: var(--accent); border-radius: 4px; transition: width .2s linear; pointer-events: none; }
+    #prog-fill::after { content: ''; position: absolute; right: -7px; top: 50%; transform: translateY(-50%); width: 14px; height: 14px; border-radius: 50%; background: var(--text); opacity: 0; transition: opacity .12s; box-shadow: 0 1px 6px rgba(0,0,0,.5); z-index: 2; }
+    #prog:hover #prog-fill::after, #prog.dragging #prog-fill::after { opacity: 1; }
+    #prog::before { content: ''; position: absolute; inset: -8px 0; }
 
     /* ── NOW PLAYING VIEW ── */
     #np-header {
@@ -413,7 +415,7 @@
       #topbar { display: flex; }
 
       /* ── Mobile player bar ── */
-      :root { --ph: 108px; }
+      :root { --ph: 120px; }
       #player { padding: 8px 12px 10px; gap: 4px; }
       #player-row1 { gap: 6px; }
       #pl-left { max-width: none; flex: 1; min-width: 0; }
@@ -497,19 +499,21 @@
 
     /* ── EXPANDED PLAYER (desktop only) ── */
     #player.expanded {
-      height: 128px;
-      padding: 10px 24px 12px;
-      gap: 6px;
+      height: 160px;
+      padding: 12px 28px 14px;
+      gap: 8px;
     }
-    #player.expanded #pl-art { width: 72px; height: 72px; border-radius: 8px; }
-    #player.expanded #pl-title { font-size: 16px; }
-    #player.expanded #pl-artist { font-size: 13px; }
-    #player.expanded #pl-play { width: 52px; height: 52px; }
-    #player.expanded #pl-play svg { width: 22px; height: 22px; }
-    #player.expanded .cb { padding: 9px; }
-    #player.expanded #tc, #player.expanded #tt { font-size: 12px; width: 36px; }
-    #player.expanded #vol-bar { width: 96px; }
-    #player.expanded #player-row2 { gap: 10px; }
+    #player.expanded #pl-art { width: 92px; height: 92px; border-radius: 10px; }
+    #player.expanded #pl-title { font-size: 18px; }
+    #player.expanded #pl-artist { font-size: 14px; }
+    #player.expanded #pl-play { width: 60px; height: 60px; }
+    #player.expanded #pl-play svg { width: 26px; height: 26px; }
+    #player.expanded .cb { padding: 11px; }
+    #player.expanded #tc, #player.expanded #tt { font-size: 13px; width: 38px; }
+    #player.expanded #vol-bar { width: 110px; }
+    #player.expanded #player-row2 { gap: 12px; }
+    #player.expanded #prog { height: 10px; border-radius: 5px; }
+    #player.expanded #vol-bar { height: 10px; border-radius: 5px; }
     /* hide expand button on mobile */
     @media (max-width: 860px) { #player-expand { display: none !important; } }
   </style>
@@ -1010,7 +1014,7 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
       </button>
       <button id="player-expand" class="cb" onclick="togglePlayerExpand()" title="Expand player" style="display:none">
-        <svg id="expand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+        <svg id="expand-icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="transition:transform .2s"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
       </button>
     </div>
   </div>
@@ -1611,6 +1615,57 @@ function setVol(e) {
   document.getElementById('vol-fill').style.width = (S.volume * 100) + '%';
   save();
 }
+
+// ── Drag scrubbing for progress and volume bars ───────────────
+(function initBarDrag() {
+  function makeDraggable(barId, onDrag) {
+    const bar = document.getElementById(barId);
+    if (!bar) return;
+    let dragging = false;
+
+    function getPos(e) {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const rect = bar.getBoundingClientRect();
+      return Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+    }
+
+    function start(e) {
+      dragging = true;
+      bar.classList.add('dragging');
+      onDrag(getPos(e));
+      e.preventDefault();
+    }
+    function move(e) {
+      if (!dragging) return;
+      onDrag(getPos(e));
+      e.preventDefault();
+    }
+    function end() {
+      dragging = false;
+      bar.classList.remove('dragging');
+    }
+
+    bar.addEventListener('pointerdown', start, { passive: false });
+    window.addEventListener('pointermove', move, { passive: false });
+    window.addEventListener('pointerup', end);
+    bar.addEventListener('touchstart', start, { passive: false });
+    window.addEventListener('touchmove', move, { passive: false });
+    window.addEventListener('touchend', end);
+  }
+
+  makeDraggable('prog', (pct) => {
+    if (!A.duration) return;
+    A.currentTime = pct * A.duration;
+    document.getElementById('prog-fill').style.width = (pct * 100) + '%';
+  });
+
+  makeDraggable('vol-bar', (pct) => {
+    S.volume = pct;
+    A.volume = pct;
+    document.getElementById('vol-fill').style.width = (pct * 100) + '%';
+    save();
+  });
+})();
 
 // ── Queue ──────────────────────────────
 function renderQ() {
@@ -2765,15 +2820,15 @@ function togglePlayerExpand() {
   const icon = document.getElementById('expand-icon');
   const expanded = player.classList.toggle('expanded');
   // Update main/sidebar padding to match new player height
-  const newH = expanded ? '128px' : '80px';
+  const newH = expanded ? '160px' : '110px';
   document.getElementById('main').style.paddingBottom = newH;
   document.getElementById('sidebar').style.paddingBottom = newH;
   const qp = document.getElementById('qpanel');
   if (qp) qp.style.paddingBottom = newH;
   // Flip icon to collapse arrow when expanded
-  icon.innerHTML = expanded
-    ? '<path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>'
-    : '<path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>';
+  // Chevron points up when collapsed (expand), down when expanded (collapse)
+  const iconEl = document.getElementById('expand-icon');
+  if (iconEl) iconEl.style.transform = expanded ? 'rotate(180deg)' : 'rotate(0deg)';
   localStorage.setItem('nb_expanded', expanded ? '1' : '0');
 }
 
@@ -2883,7 +2938,7 @@ function renderRadioList() {
       <div class="track-num">${isNow?'<span class="eq"><span></span><span></span><span></span><span></span></span>':String(i+1)}</div>
       <div class="track-rinfo">
         <div class="track-rname">${x(t.Name)}</div>
-        <div class="track-rartist">${x(resolve(t.AlbumArtist||t.ArtistItems?.[0]?.Name||''))}</div>
+        <div class="track-rartist" style="cursor:pointer;color:var(--text2)" onclick="event.stopPropagation();openArtistByName('${x(resolve(t.AlbumArtist||t.ArtistItems?.[0]?.Name||''))}')" onmouseenter="this.style.color='var(--accent)'" onmouseleave="this.style.color='var(--text2)'">${x(resolve(t.AlbumArtist||t.ArtistItems?.[0]?.Name||''))}</div>
       </div>
       <div class="track-dur">${ticks(t.RunTimeTicks)}</div>
     </div>`;
