@@ -2,7 +2,7 @@
 
 # NimiBeats.fm
 
-**A self-hosted Progressive Web App music client for [Jellyfin](https://jellyfin.org/)**
+**A self-hosted Web App music client for [Jellyfin](https://jellyfin.org/)**
 
 Designed for always-on tablet/kiosk use. Works great on iPad, Android, and desktop.
 Single HTML file · No build tools · No frameworks · No dependencies beyond Jellyfin.
@@ -266,7 +266,7 @@ Navigate to your NimiBeats URL and enter your Jellyfin server address and creden
 
 ## Inspired by
 
-[Nimi Nightmare](https://www.youtube.com/@NimiNightmare) — independent VTuber, baku nurse, cozy dreamer, and the entire reason this project exists.
+[Nimi Nightmare](https://www.youtube.com/@NimiNightmare)
 
 ---
 
