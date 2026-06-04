@@ -1,0 +1,32 @@
+{
+  "name": "NimiBeats.fm",
+  "short_name": "NimiBeats",
+  "description": "A Jellyfin music client for your home library",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0f0e",
+  "theme_color": "#0d0f0e",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["music", "entertainment"],
+  "shortcuts": [
+    {
+      "name": "Now Playing",
+      "url": "/?view=nowplaying",
+      "description": "Jump to now playing view"
+    }
+  ]
+}
