@@ -266,7 +266,7 @@ Navigate to your NimiBeats URL and enter your Jellyfin server address and creden
 
 ## Inspired by
 
-[Nimi Nightmare](https://www.youtube.com/@NimiNightmare) — independent VTuber, baku nurse, cozy dreamer, and the entire reason this project exists.
+[Nimi Nightmare](https://www.youtube.com/@NimiNightmare)
 
 ---
 
